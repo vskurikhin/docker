@@ -5,7 +5,7 @@ COPY scripts.tgz /root/
 
 ENV container docker
 
-RUN (cd /; for f in /root/*.tgz; do \
+RUN (cd /; for f in /root*.tgz; do \
 tar xzf $f && rm -f $f; done) && update-ca-trust ; \
 (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
 systemd-tmpfiles-setup.service ] || rm -f $i; done); \
@@ -17,9 +17,10 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*; \
 rm -f /root/*.tgz; \
+sh /root/install-postgres.sh; \
 systemctl enable remain-after-exit.service; \
 yum install -y vim-enhanced
 
-VOLUME [ "/sys/fs/cgroup" ]
+VOLUME [ "/sys/fs/cgroup", "/var/lib/pgsql" ]
 
 CMD ["/usr/sbin/init"]

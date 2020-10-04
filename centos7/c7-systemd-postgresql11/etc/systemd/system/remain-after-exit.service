@@ -1,0 +1,9 @@
+[Unit]
+Description=RemainAfterExit service
+
+[Service]
+RemainAfterExit=true
+ExecStart=/root/remain-after-exit.sh
+
+[Install]
+WantedBy=multi-user.target
