@@ -1,0 +1,5 @@
+[tis-samba]
+name=tis-samba
+baseurl=http://samba.tranquil.it/centos7/samba-4.11/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-TISSAMBA-7
